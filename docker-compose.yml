@@ -1,0 +1,70 @@
+networks:
+  microservices-net:
+    driver: bridge
+
+services:
+  # ORDER SERVICE
+  order-service:
+    build: ./services/order_service
+    container_name: order-service
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_HOST: order-db
+      CUSTOMER_SERVICE_URL: http://customer-service:3000
+    depends_on:
+      - order-db
+      - customer-service
+      - rabbitmq
+    networks:
+      - microservices-net
+    volumes:
+      - ./services/order_service:/app
+
+  # CUSTOMER SERVICE
+  customer-service:
+    build: ./services/customer_service
+    container_name: customer-service
+    ports:
+      - "3001:3000"
+    depends_on:
+      - customer-db
+      - rabbitmq
+    networks:
+      - microservices-net
+    volumes:
+      - ./services/customer_service:/app
+
+  # DATABASES 
+  order-db:
+    image: postgres:15
+    container_name: order-db
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - order-db-data:/var/lib/postgresql/data
+    networks:
+      - microservices-net
+
+  customer-db:
+    image: postgres:15
+    container_name: customer-db
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - customer-db-data:/var/lib/postgresql/data
+    networks:
+      - microservices-net
+  # RABBITMQ
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    ports:
+      - "15672:15672"
+    networks:
+      - microservices-net
+
+volumes:
+  order-db-data:
+  customer-db-data:
+
