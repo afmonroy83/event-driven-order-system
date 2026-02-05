@@ -9,6 +9,7 @@ RUN apt-get update -qq && apt-get install -y \
   curl \
   nodejs \
   postgresql-client \
+  netcat-openbsd \
   && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
