@@ -36,3 +36,6 @@ Thumbs.db
 .ruby-version
 .ruby-gemset
 services/**/.git
+services/order_service/log/development.log
+services/order_service/log/development.log
+services/order_service/tmp/cache/bootsnap/load-path-cache
