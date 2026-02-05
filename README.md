@@ -48,12 +48,12 @@ Ejecuta el siguiente comando en la raíz del proyecto:
 
 ```bash
 chmod +x services/customer_service/entrypoint.sh
-
+```
 ## Levantar el proyecto
 
 ```bash
 docker-compose up --build
-
+```
 ## Inicialización de las Bases de Datos
 
 Una vez levantados los servicios con `docker compose up`, es necesario crear, migrar y poblar las bases de datos de cada microservicio.  
@@ -72,15 +72,16 @@ docker compose exec order-service rails db:create db:migrate db:seed
 # Salida esperada:
 # Created database 'order_service_development'
 # Created database 'order_service_test'
-
+```
 ## Ejecutar Tests
 
 Para correr la suite de pruebas del **Order Service**, utiliza el siguiente comando dentro de tu proyecto:
 
 ```bash
 docker compose exec order-service bundle exec rails spec
-
+```
 Para correr la suite de pruebas del **Customer Service**, utiliza el siguiente comando dentro de tu proyecto:
 
 ```bash
 docker compose exec customer-service bundle exec rails spec
+```
