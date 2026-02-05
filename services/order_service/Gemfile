@@ -38,8 +38,11 @@ gem 'rack-cors'
 gem 'rspec-rails'
 gem 'faraday'
 gem 'faraday-retry'
+gem 'circuitbox'
 gem 'stoplight'
 gem 'bunny'
+gem 'vcr'
+gem 'webmock'
 
 
 group :development, :test do
