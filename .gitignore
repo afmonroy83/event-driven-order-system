@@ -6,8 +6,6 @@
 **/tmp/pids/*
 **/tmp/cache/*
 **/tmp/sockets/*
-**/.env
-**/.env.*
 **/config/master.key
 **/config/credentials/*.key
 **/*.sqlite3
@@ -38,4 +36,3 @@ Thumbs.db
 .ruby-version
 .ruby-gemset
 services/**/.git
-**/.env
